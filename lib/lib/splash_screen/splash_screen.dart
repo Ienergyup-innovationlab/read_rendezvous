@@ -1,12 +1,9 @@
 import 'dart:async';
+import 'package:book_app/lib/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../Utils/router.dart';
 import '../../../constant/colour.dart';
-
-
-
-
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -31,6 +28,9 @@ class _SplashState extends State<Splash> {
   void initState() {
     _animate();
     super.initState();
+    Timer(const Duration(seconds: 8), () {
+      Routers.replace(context, const Onboarding());
+    });
   }
 
   _animate() {
@@ -40,7 +40,7 @@ class _SplashState extends State<Splash> {
         _ballValue = 290;
       });
     }).whenComplete(
-          () {
+      () {
         Future.delayed(const Duration(milliseconds: 3000), () {
           setState(() {
             // _height = 400;
@@ -60,7 +60,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -74,7 +74,6 @@ class _SplashState extends State<Splash> {
               left: 0,
               right: _ballRight,
               child: AnimatedContainer(
-
                 duration: const Duration(milliseconds: 500),
                 height: _height,
                 width: _width,

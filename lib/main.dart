@@ -1,15 +1,12 @@
-
+import 'package:book_app/config/routes/routes.dart';
+import 'package:book_app/config/theme/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'lib/provider/providers.dart';
 import 'lib/splash_screen/splash_screen.dart';
 
-
-
-
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
@@ -24,16 +21,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: Providers.getProvider,
         builder: (_, __) => MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ReadRendezvous',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home:  ResponsiveSizer(
-        builder: (context, orientation, screenType) {
-      return const Splash();})
-    ));
+            debugShowCheckedModeBanner: false,
+            title: 'ReadRendezvous',
+            theme: theme(),
+            onGenerateRoute: AppRoutes.onGenerateRoutes,
+            home: ResponsiveSizer(builder: (context, orientation, screenType) {
+              return const Splash();
+            })));
   }
 }
-
-
